@@ -1,0 +1,194 @@
+<nav class="shadow-nav nav-index navbar navbar-expand-lg navbar-dark px-2 px-lg-4 text-with-shadow "
+  style="background-color:#222222">
+  <div class="d-flex w-100">
+    <a class="navbar-brand m-0 d-flex align-items-center" href="#"><img src="./logogame.png" alt="" class="logo"><span
+        class="d-none d-lg-block ms-1">GameSimulation</span></a>
+
+    <!-- Thông báo chạy ngang màn hình (giữa) -->
+    <div class="d-flex justify-content-center align-items-center notification-container mx-3">
+      <marquee behavior="scroll" direction="left" class="notification">
+        <span>🔥 Sự kiện đặc biệt: Nhận phần thưởng gấp đôi khi hoàn thành nhiệm vụ hôm nay! 🔥</span>
+      </marquee>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center">
+      <button class="navbar-toggler d-lg-none p-1" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+        aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+    </div>
+
+  </div>
+
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+
+
+
+
+    <!-- Liên hệ Facebook và YouTube -->
+    <div class="d-flex ms-auto nav-space">
+
+      <div class="social-icons d-flex align-items-center me-4">
+        <a href="https://web.facebook.com/profile.php?id=100087647860807" target="_blank" class="me-2">
+          <i class="fab fa-facebook fa-lg"></i>
+        </a>
+        <a href="https://www.youtube.com/@Cuong_AFK" target="_blank">
+          <i class="fab fa-youtube fa-lg"></i>
+        </a>
+      </div>
+
+      <!-- Nút Đăng xuất và admin menu -->
+      <div class="d-flex align-items-center ms-auto buttons-container">
+        <button class="btn btn-logout me-2 text-with-shadow ms-auto" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Đăng xuất
+        </button>
+
+        <div *ngIf="isAdmin" class="d-flex">
+          <button class="btn btn-outline-light text-with-shadow" type="button" data-bs-toggle="collapse"
+            data-bs-target="#adminMenu" aria-controls="adminMenu" aria-expanded="false" aria-label="Toggle admin menu">
+            Admin Menu
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Menu admin -->
+    <div *ngIf="isAdmin" class="collapse nav-space" id="adminMenu">
+      <app-admin></app-admin>
+    </div>
+  </div>
+
+</nav>
+
+
+<div class="box-light ">
+  <img src="./asset/light.png" alt="" class="img-light ms-auto">
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="bg-dark text-light text-with-shadow">
+  <div class="row">
+
+
+    <div class="col-lg-6 col-12 px-0 d-flex justify-content-center ">
+      <img src="./asset/SPY.jpg" class="img-fluid custom-img shadow-img" alt="" />
+    </div>
+
+
+
+    <div class="col-lg-6 px-0">
+
+
+
+
+      <div class="container mt-5 mb-5">
+        <h2>Thông tin cá nhân</h2>
+
+<div *ngIf="!isEditMode" class="row text-with-shadow">
+  <div class="col-md-6">
+    <p><strong>ID:</strong> {{ userInfo.id }}</p>
+    <p><strong>Tên:</strong> {{ userInfo.ten }}</p>
+    <p><strong>Tuổi:</strong> {{ userInfo.tuoi }}</p>
+  </div>
+  <div class="col-md-6">
+    <p><strong>Giới tính:</strong> {{ userInfo.gioiTinh }}</p>
+    <p><strong>Ngày sinh:</strong> {{ formatDate(userInfo.ngaySinh) }}</p>
+    <p><strong>Số tiền:</strong> {{ userInfo.tien }}</p>
+  </div>
+
+  <div class="my-3">
+    <button class="btn btn-primary text-with-shadow edit-btn" (click)="isEditMode = true">
+      <i class="fas fa-edit"></i> Chỉnh sửa
+    </button>
+  </div>
+
+  <h2>Nghề nghiệp hiện tại</h2>
+  <div *ngIf="jobDetails.length > 0; else noJobs">
+    <table class="table table-dark"> <!-- Thêm class table-dark -->
+      <thead>
+        <tr>
+          <th>Tên Nghề Nghiệp</th>
+          <th>Năm Kinh Nghiệm</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobDetails">
+          <td>{{ job.ten }}</td>
+          <td>{{ job.namKinhNghiem }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noJobs>
+    <p>Không có công việc nào được hiển thị.</p>
+  </ng-template>
+</div>
+
+
+
+
+
+
+        <div *ngIf="isEditMode" class="mt-4">
+          <form class="row g-3">
+            <div class="col-md-6">
+              <label for="name" class="form-label">Tên:</label>
+              <input class="form-control" id="name" [(ngModel)]="userInfo.ten" [ngModelOptions]="{standalone: true}" />
+            </div>
+
+            <div class="col-md-6">
+              <label for="gender" class="form-label">Giới tính:</label>
+              <select class="form-control" id="gender" [(ngModel)]="userInfo.gioiTinh"
+                [ngModelOptions]="{standalone: true}">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="birthDate" class="form-label">Ngày sinh:</label>
+              <input class="form-control" type="date" id="birthDate" [(ngModel)]="userInfo.ngaySinh"
+                [ngModelOptions]="{standalone: true}" />
+            </div>
+
+            <div *ngIf="isAdmin" class="col-md-6">
+              <label for="money" class="form-label">Số tiền:</label>
+              <input id="money" type="number" [(ngModel)]="userInfo.tien" class="form-control"
+                [ngModelOptions]="{standalone: true}" />
+            </div>
+
+            <div class="col-12 mt-4">
+              <button class="btn btn-success me-2" (click)="saveUserInfo()">
+                <i class="fas fa-save"></i> Lưu
+              </button>
+              <button class="btn btn-secondary" (click)="isEditMode = false">
+                <i class="fas fa-times"></i> Hủy
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+
+
+
+
+      <div class=" p-5 mt-5 mb-3">
+        <div class="gif-neon-container">
+          <img class="gif-neon"
+            src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDY4ZjVxbm83MGtoY2t3bjgzNDN6ejVrd3FnYW0weTI3bGZqNjdvOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/m0J68sF7IOSHK/giphy.gif"
+            alt="Neon GIF" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

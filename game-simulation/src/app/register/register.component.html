@@ -1,0 +1,55 @@
+<!-- register.component.html -->
+<div class="body-game">
+  <div class="container text-center menu-container">
+    <h1 class="menu-title">Register</h1>
+    <div class="login-form">
+      <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+        <div class="mb-3">
+          <label for="userid" class="form-label"><i class="fas fa-user"></i> User ID</label>
+          <input type="text" id="userid" class="form-control bg-secondary text-light border-0"
+            [(ngModel)]="registerData.id" name="userid" placeholder="ID:" required />
+        </div>
+
+        <!-- Mật khẩu -->
+        <div class="mb-3 position-relative">
+          <label for="password" class="form-label">Password <i class="fas fa-lock"></i></label>
+          <input [type]="showPassword ? 'text' : 'password'" id="password"
+            class="form-control bg-secondary text-light border-0" [(ngModel)]="registerData.password"
+            name="password" placeholder="Password:" required />
+          <!-- Icon Mắt -->
+          <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+             (click)="showPassword = !showPassword"
+             style="position: absolute; top: 42px; right: 10px; cursor: pointer;"></i>
+        </div>
+
+        <!-- Nhập lại mật khẩu -->
+        <div class="mb-3 position-relative">
+          <label for="confirmPassword" class="form-label">Confirm Password <i class="fas fa-lock"></i></label>
+          <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword"
+            class="form-control bg-secondary text-light border-0" [(ngModel)]="registerData.confirmPassword"
+            name="confirmPassword" placeholder="Confirm Password:" required />
+          <!-- Icon Mắt -->
+          <i class="fas" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
+             (click)="showConfirmPassword = !showConfirmPassword"
+             style="position: absolute; top: 42px; right: 10px; cursor: pointer;"></i>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+
+        <!-- Thông báo thành công -->
+        <div *ngIf="registrationSuccess" class="alert alert-success mt-3 text-success fw-bold" role="alert">
+          Đăng ký thành công! Bạn sẽ được chuyển hướng đến trang đăng nhập.
+        </div>
+        
+        <!-- Thông báo lỗi -->
+        <div *ngIf="registrationError" class="alert alert-danger mt-3 text-danger fw-bold" role="alert">
+          {{ registrationError }}
+        </div>
+      </form>
+      <div class="mt-3">
+        <p class="text-light">Already have an account?</p>
+        <a class="btn btn-secondary w-100" (click)="gotologin()">Login</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="body-game">
+  <div class="container text-center menu-container">
+    <h1 class="menu-title">Login</h1>
+    <div class="login-form">
+      <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+        <div class="mb-3">
+          <label for="userid" class="form-label"><i class="fas fa-user"></i> User ID</label>
+          <input type="text" id="userid" class="form-control bg-secondary text-light border-0"
+            [(ngModel)]="loginData.id" name="userid" placeholder="ID:" required />
+        </div>
+        <div class="mb-3 position-relative"> <!-- Đặt class position-relative cho div cha -->
+          <label for="password" class="form-label">Password <i class="fas fa-lock"></i></label>
+          <input [type]="isPasswordVisible ? 'text' : 'password'" id="password"
+            class="form-control bg-secondary text-light border-0" [(ngModel)]="loginData.password" name="password"
+            placeholder="password:" required />
+          <i (click)="togglePasswordVisibility()" class="fas" [ngClass]="isPasswordVisible ? 'fa-eye-slash' : 'fa-eye'"
+            style="position: absolute; right: 10px; top: 42px; cursor: pointer;"></i>
+        </div>
+
+        <div *ngIf="loginSuccess" class="alert alert-success fw-bold text-success ">
+          {{ loginSuccess }}
+        </div>
+        <div *ngIf="loginError" class="alert alert-danger fw-bold text-danger ">
+          {{ loginError }}
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+
+      </form>
+
+      <div class="mt-3">
+        <p class="text-light">Don't have an account?</p>
+        <a class="btn btn-secondary w-100" (click)="gotoregister()">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Thông báo lỗi -->
+<div id="log-output"></div> <!-- Thẻ để hiển thị log -->

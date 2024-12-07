@@ -1,0 +1,71 @@
+/* loading.component.css */
+.modal {
+    display: block; /* Hiển thị modal */
+    position: fixed; /* Đặt modal ở vị trí cố định */
+    top: 0; /* Đặt top về 0 */
+    left: 0; /* Đặt left về 0 */
+    width: 100%; /* Chiều rộng 100% */
+    height: 100%; /* Chiều cao 100% */
+    background-color: rgba(0, 0, 0, 0.7); /* Nền mờ đen */
+    z-index: 1050; /* Đảm bảo modal nằm trên các phần tử khác */
+    
+  }
+  
+  .modal-dialog {
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    height: 100%; /* Chiều cao 100% để căn giữa */
+
+  }
+  
+  .loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid #0000;
+    border-right-color: #ffa50097;
+    position: relative;
+    animation: l24 1s infinite linear;
+  }
+  
+  .loader:before,
+  .loader:after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: inherit;
+    animation: inherit;
+    animation-duration: 2s;
+  }
+  
+  .loader:after {
+    animation-duration: 4s;
+  }
+  
+  @keyframes l24 {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+  
+
+  .loader2 {
+    width: 40px;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(circle closest-side, #fff 90%, #0000); /* Thay #000 thành #fff */
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 100%;
+    animation: l7 2s infinite linear;
+  }
+  
+  @keyframes l7 {
+      33% { background-size: calc(100%/3) 0%, calc(100%/3) 100%, calc(100%/3) 100%; }
+      50% { background-size: calc(100%/3) 100%, calc(100%/3) 0%, calc(100%/3) 100%; }
+      66% { background-size: calc(100%/3) 100%, calc(100%/3) 100%, calc(100%/3) 0%; }
+  }
+  

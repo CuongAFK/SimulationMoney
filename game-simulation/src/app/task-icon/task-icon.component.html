@@ -1,0 +1,31 @@
+<div class="container task-container">
+  <!-- Kiểm tra nếu không có nhiệm vụ -->
+  <div *ngIf="tasks.length === 0" class="text-center">
+    <p class="text-white">Không có nhiệm vụ nào để hiển thị.</p>
+  </div>
+
+  <!-- Chi tiết nhiệm vụ -->
+  <div class="card bg-dark text-white">
+    <div class="card-header">
+      <h5 class="modal-title">Xem Chi Tiết Nhiệm Vụ</h5>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{ currentTask?.ten }}</h3>
+      <p class="card-text">{{ currentTask?.moTa }}</p>
+    </div>
+  </div>
+
+  <!-- Hiển thị danh sách nhiệm vụ -->
+  <ul class="list-group mt-3">
+    <li *ngFor="let task of tasks" 
+        class="list-group-item d-flex justify-content-between align-items-center task-item cursor-pointer"
+        [class.bg-dark]="!taskProgress[task.ma]"
+        [class.bg-secondary]="taskProgress[task.ma]"
+        (click)="currentTask = task">
+      <span class="text-white">{{ task.ten }}</span>
+      <span class="badge bg-primary">
+        {{ taskProgress[task.ma] ? 'Đã hoàn thành' : 'Chưa hoàn thành' }}
+      </span>
+    </li>
+  </ul>
+</div>

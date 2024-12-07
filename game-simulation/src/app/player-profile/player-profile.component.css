@@ -1,0 +1,11 @@
+body {
+  background-color: #343a40; /* Màu nền tối */
+}
+
+.card {
+  border: none; /* Bỏ đường viền */
+}
+
+.list-group-item {
+  border: none; /* Bỏ đường viền của mỗi mục danh sách */
+}

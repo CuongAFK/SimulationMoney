@@ -1,0 +1,172 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #222222;">
+    <div>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <button class="nav-link btn btn-link" data-bs-toggle="modal" data-bs-target="#userModal">Quản lý
+                        người dùng</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link btn btn-link" data-bs-toggle="modal" data-bs-target="#taskModal">Quản lý
+                        nhiệm vụ</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal Quản lý Người dùng -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Danh sách người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="px-3" (ngSubmit)="searchUser()">
+                    <input class="form-control" type="text" placeholder="Tìm theo ID hoặc tên" [(ngModel)]="searchQuery"
+                        name="searchQuery">
+                    <button class="btn btn-primary mt-2" type="submit">Tìm kiếm</button>
+                </form>
+                <div *ngIf="userList.length > 0" class="mt-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of userList" (click)="toggleUserDetails(user.id)">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.ten }}</td>
+                            </tr>
+                            <!-- Hiển thị chi tiết nếu expandedUser === user.id -->
+
+                            <tr *ngIf="expandedUser">
+                                <td colspan="3">
+                                    <div *ngIf="selectedUserDetails" class="card">
+                                        <div class="card-body">
+                                            <p><strong>ID:</strong> {{ selectedUserDetails.id }}</p>
+                                            <p><strong>Tên:</strong> {{ selectedUserDetails.ten }}</p>
+                                            <p><strong>Tuổi:</strong> {{ selectedUserDetails.tuoi }}</p>
+                                            <p><strong>Giới tính:</strong> {{ selectedUserDetails.gioiTinh }}</p>
+                                            <p><strong>Ngày Sinh:</strong> {{ formatDate(selectedUserDetails.ngaySinh)
+                                                }}</p>
+                                            <p><strong>Trạng Thái Cấm:</strong> {{ selectedUserDetails.biCam ? 'Đã Bị Cấm' : 'Hoạt Động' }}</p>
+                                            <button class="btn"
+                                                [ngClass]="selectedUserDetails.biCam ? 'btn-success' : 'btn-danger'"
+                                                (click)="banAccount(selectedUserDetails.id, selectedUserDetails.biCam)">
+                                                {{ selectedUserDetails.biCam ? 'Mở lại' : 'Cấm' }}
+                                            </button>
+                                            <button class="btn btn-danger"
+                                                (click)="deleteAccount(selectedUserDetails.id)">
+                                                Xóa Tài Khoản
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="userList.length === 0" class="mt-3 text-center">
+                    <p>Không có người dùng nào.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Quản lý Nhiệm vụ -->
+<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="taskModalLabel">Danh sách nhiệm vụ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+<!-- Form Tìm Kiếm Nhiệm Vụ -->
+<form class="px-3">
+    <input class="form-control mt-2" type="text" placeholder="Tìm theo ID hoặc tên" 
+           [(ngModel)]="searchQuery" (ngModelChange)="searchTask()" name="searchQuery">
+    <button class="btn btn-primary mt-2" type="button" (click)="searchTask()">Tìm kiếm</button>
+  </form>
+
+                <div *ngIf="taskList.length > 0" class="mt-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Thứ Tự</th>
+                                <th>Mã</th>
+                                <th>Tên</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let task of filteredTaskList; let i = index" (click)="toggleTaskDetails(task)" class="cursor-pointer">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ task.ma }}</td>
+                                <td>{{ task.ten }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="taskList.length === 0" class="mt-3 text-center">
+                    <p>Không có nhiệm vụ nào.</p>
+                </div>
+
+                <!-- Form hiển thị chi tiết nhiệm vụ sau khi nhấn vào nhiệm vụ -->
+                <div *ngIf="showDetails && selectedTask" class="mt-4">
+                    <h5>Chi tiết nhiệm vụ</h5>
+                    <form [formGroup]="taskForm">
+                        <div class="mb-3">
+                            <label for="maTask" class="form-label">Mã Nhiệm Vụ</label>
+                            <input id="maTask" type="text" class="form-control" formControlName="ma"
+                                [value]="selectedTask.ma" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tenTask" class="form-label">Tên Nhiệm Vụ</label>
+                            <input id="tenTask" type="text" class="form-control" formControlName="ten"
+                                [value]="selectedTask.ten">
+                        </div>
+                        <div class="mb-3">
+                            <label for="moTaTask" class="form-label">Mô Tả</label>
+                            <textarea id="moTaTask" class="form-control" rows="3"
+                                formControlName="moTa">{{ selectedTask.moTa }}</textarea>
+                        </div>
+                        <button class="btn btn-primary" (click)="updateTask()" type="submit">Cập nhật nhiệm vụ</button>
+                        <button class="btn btn-danger" (click)="deleteTask(selectedTask.ma)" type="button">Xóa nhiệm vụ</button>
+                    </form>
+                </div>
+
+                <!-- Nút Thêm Nhiệm Vụ -->
+                <button class="btn btn-primary mt-3" (click)="toggleAddTaskForm()">
+                    {{ showAddTask ? 'Ẩn Form Thêm Nhiệm Vụ' : 'Thêm Nhiệm Vụ' }}
+                </button>
+
+                <!-- Form Thêm Nhiệm Vụ -->
+                <div *ngIf="showAddTask" class="mt-3">
+                    <h5>Thêm Nhiệm Vụ Mới</h5>
+                    <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+                        <div class="mb-3">
+                            <label for="maTask" class="form-label">Mã Nhiệm Vụ</label>
+                            <input id="maTask" type="text" class="form-control" formControlName="ma">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tenTask" class="form-label">Tên Nhiệm Vụ</label>
+                            <input id="tenTask" type="text" class="form-control" formControlName="ten">
+                        </div>
+                        <div class="mb-3">
+                            <label for="moTaTask" class="form-label">Mô Tả</label>
+                            <textarea id="moTaTask" class="form-control" rows="3" formControlName="moTa"></textarea>
+                        </div>
+                        <button class="btn btn-success" type="submit">Thêm Nhiệm Vụ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

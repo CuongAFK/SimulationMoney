@@ -1,0 +1,12 @@
+.alert {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+  }
+
+
+  .shadow-nav{
+    box-shadow: 0 50px 100px 0 rgba(234, 0, 0, 0.641);
+
+  }

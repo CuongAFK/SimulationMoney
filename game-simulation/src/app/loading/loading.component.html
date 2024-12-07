@@ -1,0 +1,18 @@
+<!-- loading.component.html -->
+<div class="modal" tabindex="-1" role="dialog" *ngIf="loadingService.loading$ | async" >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content opacity-50 bg-dark">
+        <div class="modal-header">
+          <div class="d-flex m-auto">
+            <h5 class="modal-title opacity-100 text-light me-1" id="loadingModalLabel">Đang Tải</h5>
+            <div class="loader2"></div>
+          </div>
+        </div>
+        <div class="modal-body text-center opacity-100 text-light">
+          <div class="loader m-auto"></div>
+          <p>{{'Loading...' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

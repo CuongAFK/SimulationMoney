@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "serveo-backend": "node start-serveo.js",
+    "ng": "cd ../game-simulation && ng serve",
+    "serveo-frontend": "ssh -T -R 80:localhost:4200 serveo.net"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "mssql": "^11.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

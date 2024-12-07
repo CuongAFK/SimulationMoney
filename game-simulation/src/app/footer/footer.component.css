@@ -1,0 +1,54 @@
+@media (min-width: 992px) {
+
+    /* Kích thước màn hình từ 992px trở lên */
+    .navbar-collapse {
+        display: flex;
+
+        justify-content: center;
+
+
+    }
+}
+
+
+
+.nav-item {
+    margin: 0 15px;
+    /* Khoảng cách giữa các mục menu */
+}
+
+/* CSS cho mobile */
+@media (max-width: 991px) {
+
+    /* Kích thước màn hình nhỏ hơn 992px */
+    .navbar {
+        display: block;
+        /* Đặt lại thành block cho mobile */
+    }
+
+    .navbar-nav {
+        display: block;
+        /* Đặt lại thành block cho mobile */
+        text-align: center;
+        /* Căn giữa các mục menu */
+    }
+
+    .nav-item {
+        margin: 10px 0;
+        /* Khoảng cách giữa các mục menu cho mobile */
+    }
+}
+
+a {
+    cursor: pointer;
+}
+
+
+.text-with-shadow {
+    text-shadow:
+      0 0 5px rgba(255, 255, 255, 0.7),
+      /* Bóng trắng mờ */
+      0 0 10px rgba(255, 255, 255, 0.5);
+    /* Bóng trắng rõ hơn */
+  }
+

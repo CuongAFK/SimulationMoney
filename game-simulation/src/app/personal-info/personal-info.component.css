@@ -1,0 +1,314 @@
+h2 {
+  margin-bottom: 30px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+
+
+
+.nav-space{
+  white-space: nowrap;
+}
+
+
+.logo {
+  width: 40px;
+  border-radius: 50% 25%;
+  /* Bo tròn logo để thành hình tròn */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7),
+    /* Bóng trắng mờ */
+    0 0 10px rgba(255, 255, 255, 0.5);
+  /* Bóng trắng rõ hơn */
+  ;
+}
+
+
+.gif-container,
+img {
+  width: 100%;
+
+}
+
+.row {
+  margin: 0;
+}
+
+.custom-img {
+  transition: transform 0.6s; /* Thêm hiệu ứng chuyển đổi cho hình ảnh */
+}
+
+.custom-img {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.6s;
+}
+
+.custom-img:active {
+  transform: rotateY(180deg) translateX(200px); /* Xoay 180 độ và di chuyển sang trái 20px */
+}
+
+.img-light {
+  position: absolute;
+  width: 15%; /* Kích thước hình ảnh */
+  top: 0; /* Đặt vị trí hình ảnh */
+  right: 0; /* Căn chỉnh sang bên phải */
+  margin-right: 20px; /* Khoảng cách bên phải */
+  margin-top: 0; /* Không có khoảng cách trên */
+  filter: drop-shadow(-10px 15px 15px rgba(255, 0, 0, 0.8)); /* Bóng đỏ phủ lên từ góc trái xuống */
+  z-index: 2;
+  transition: filter 0.2s ease; /* Thêm hiệu ứng chuyển đổi cho bóng */
+}
+
+@keyframes shake {
+  0% { transform: translate(0) scale(1); }
+  25% { transform: translate(-100%, 50%) scale(2); }
+  50% { transform: translate(-200%, 200%) scale(5); }
+  75% { transform: translate(-100%, 50%) scale(2); }
+  100% { transform: translate(0) scale(1); }
+}
+
+
+.img-light:hover {
+  filter: drop-shadow(-10px 20px 30px rgba(255, 0, 0, 1)) drop-shadow(-20px 40px 100px rgba(255, 10, 68, 0.643)); 
+}
+
+.img-light:active {
+  animation: shake 5s infinite;
+}
+
+.box-light {
+  position: relative;
+  width: 100%;
+}
+
+
+.gif-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hiệu ứng hover sáng đỏ và gồ lên */
+.btn-logout {
+  background-color: #ff3333;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(255, 51, 51, 0.4);
+}
+
+.btn-logout:hover {
+  background-color: #ff0000;
+  color: white;
+  transform: translateY(-3px);
+  /* Gồ lên */
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.8);
+}
+
+.edit-btn {
+  position: relative;
+  transition: all 0.3s ease; /* Hiệu ứng mượt khi hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bóng nhẹ lúc bình thường */
+}
+
+.edit-btn:hover {
+  box-shadow: 0 8px 15px rgba(255, 255, 255, 0.8), /* Bóng sáng chói */
+              0 4px 10px rgba(0, 0, 0, 0.3); /* Bóng đen phía dưới tạo hiệu ứng gồ lên */
+  transform: translateY(-3px); /* Dịch chuyển nút lên tạo hiệu ứng nổi */
+  background-color: #0056b3; /* Thay đổi màu nền nếu muốn */
+  color: #ffffff; /* Đổi màu chữ cho rõ hơn */
+}
+
+.edit-btn:active {
+  transform: translateY(1px); /* Khi nhấn nút, nó sẽ dịch xuống một chút */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bóng sẽ giảm khi nhấn nút */
+}
+
+/* Container bao quanh GIF */
+.gif-neon-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Ảnh GIF */
+.gif-neon {
+  width: 100%;
+  /* Ảnh sẽ chiếm toàn bộ chiều rộng của container */
+  height: auto;
+  /* Đảm bảo chiều cao tự động điều chỉnh theo tỷ lệ */
+  border-radius: 10px;
+  /* Bo góc cho ảnh */
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 50px rgb(255, 0, 0),
+    /* Bóng lún vào trong */
+    0 0 40px rgba(255, 0, 0, 0.596);
+  /* Bóng mờ hơn */
+}
+
+
+/* Hiệu ứng viền nhấp nháy */
+.gif-neon-container::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 10px;
+  border: var(--border-size) solid transparent;
+  background-color: rgb(34, 34, 34);
+
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5),
+    /* Ánh sáng mờ đỏ */
+    0 0 20px rgba(255, 0, 0, 0.5),
+    0 0 30px rgba(255, 0, 0, 0.5);
+  animation: neonGlow 1.5s infinite alternate;
+  /* Kết hợp nhấp nháy */
+}
+
+@keyframes neonGlow {
+  0% {
+    box-shadow:
+      0 0 10px rgba(128, 1, 1, 0.5),
+      /* Ánh sáng mờ đỏ */
+      0 0 20px rgba(255, 0, 0, 0.5),
+      0 0 30px rgba(255, 0, 0, 0.5);
+  }
+
+  100% {
+    box-shadow:
+      0 0 30px rgba(255, 255, 0, 0.788),
+      /* Ánh sáng vàng sáng */
+      0 0 50px rgba(143, 0, 0, 0.8),
+      /* Ánh sáng cam */
+      0 0 80px rgba(255, 252, 99, 0.752);
+    /* Ánh sáng đỏ */
+  }
+}
+
+.text-with-shadow {
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.7),
+    /* Bóng trắng mờ */
+    0 0 10px rgba(255, 255, 255, 0.5);
+  /* Bóng trắng rõ hơn */
+}
+
+.text-info-shadow {
+  text-shadow:
+    0 0 5px rgba(255, 230, 0, 0.7),
+    /* Bóng trắng mờ */
+    0 0 10px rgba(240, 255, 37, 0.5);
+  /* Bóng trắng rõ hơn */
+}
+
+
+.custom-img {
+  width: 60%;
+  /* Chiều rộng 60% cho màn hình lớn */
+}
+
+@media (max-width: 576px) {
+  .custom-img {
+    width: 100%;
+    /* Chiều rộng 100% cho màn hình nhỏ */
+  }
+}
+
+
+
+
+
+.shadow-nav {
+  width: 100%;
+  box-shadow:0 150px 150px 20px rgba(234, 0, 0, 0.692);
+  z-index: 2;
+}
+
+.nav-index{
+  z-index: 1051;
+}
+
+/* Đảm bảo mọi thứ được căn giữa dọc theo trục ngang */
+.notification-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* Hiệu ứng marquee cho thông báo với nền đỏ tối */
+.notification {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #8b0000;
+  /* Màu đỏ tối */
+  padding: 5px 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  /* Đổ bóng tối */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 0, 0.7);
+  /* Bóng chữ trắng và đỏ */
+  animation: blinkText 1s infinite;
+}
+
+/* Tạo hiệu ứng nhấp nháy */
+@keyframes blinkText {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Style cho icon liên hệ */
+.social-icons a {
+  color: #ffffff;
+  /* Màu trắng sáng ban đầu */
+  transition: color 0.3s ease;
+}
+
+/* Hover hiệu ứng với màu chói */
+.social-icons a:hover {
+  color: #ff0000;
+  /* Màu đỏ chói cho YouTube */
+}
+
+.social-icons a:nth-child(1):hover {
+  color: #3b5998;
+  /* Màu xanh chói cho Facebook */
+}
+
+
+.table-dark {
+  background-color: #343a40; /* Màu nền tối */
+  color: #ffffff; /* Màu chữ sáng */
+}
+
+.table-dark th {
+  background-color: #495057; /* Màu nền cho header bảng */
+  color: #ffffff; /* Màu chữ cho header */
+}
+
+.table-dark tbody tr {
+  background-color: #495057; /* Màu nền cho các hàng */
+}
+
+.table-dark tbody tr:hover {
+  background-color: #6c757d; /* Màu nền khi di chuột qua hàng */
+}
+
+

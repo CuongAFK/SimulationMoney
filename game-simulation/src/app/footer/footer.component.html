@@ -1,0 +1,111 @@
+
+
+<div class="footer fixed-bottom text-white text-center text-with-shadow">
+
+  
+  
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#222222;">
+
+    <div>
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#NavFooter"
+        aria-controls="NavFooter" aria-expanded="false" aria-label="Toggle navigation"><i
+          class="fas fa-bars"></i></button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="NavFooter">
+
+      <ul class="navbar-nav  mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#" aria-current="page"><i class="fas fa-home"></i> Home</a>
+          <!-- Thêm icon cho Home -->
+        </li>
+        <li class="nav-item dropdown dropup"> <!-- Thay đổi từ dropdown thành dropup -->
+          <a class="nav-link dropdown-toggle" href="#" id="personalDropdown" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> Cá Nhân</a>
+          <!-- Thêm icon cho Cá Nhân -->
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="personalDropdown">
+            <li><a class="dropdown-item" (click)="gotopersonalinfo()"><i class="fas fa-info-circle"></i> Thông Tin Cá
+                Nhân</a></li>
+            <!-- Thêm icon cho Thông Tin Cá Nhân -->
+            <li><a class="dropdown-item" (click)="gotoplayerprofile()"><i class="fas fa-id-card"></i> Hồ Sơ</a></li>
+            <!-- Thêm icon cho Hồ Sơ -->
+          </ul>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#task"><i class="fas fa-tasks"></i> Nhiệm Vụ</a>
+        </li>
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-home"></i> Gia Đình</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-bell"></i> Thông Báo</a>
+        </li>
+        <li class="nav-item dropdown dropup">
+          <a class="nav-link dropdown-toggle" href="#" id="mapDropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fas fa-map-marker-alt"></i> Bản Đồ
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="mapDropdown">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-university"></i> Ngân Hàng</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-store"></i> Cửa Hàng</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-hospital"></i> Bệnh Viện</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-hotel"></i> Khách Sạn</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-utensils"></i> Nhà Hàng</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-school"></i> Trường Học</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-building"></i> Công Ty</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown dropup"> <!-- Thay đổi từ dropdown thành dropup -->
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"><i class="fas fa-dollar-sign"></i> Kiếm Tiền</a> <!-- Thêm icon cho Kiếm Tiền -->
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownId">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-user-secret"></i> Hacker</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line"></i> Chứng Khoán</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-ticket-alt"></i> Sổ Số</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-coins"></i> Đào Coin</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+</div>
+
+
+
+<div class="modal fade text-with-shadow" id="task" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+  role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content bg-dark text-white"> <!-- Thêm lớp bg-dark và text-white -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitleId">Danh sách Nhiệm Vụ</h5>
+        <button type="button" class="btn-close btn-close-white text-with-shadow" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Thành phần TaskIconComponent -->
+        <app-task-icon></app-task-icon>
+      </div>
+      <div class="modal-footer ">
+        <button type="button" class="btn btn-secondary text-with-shadow" data-bs-dismiss="modal">
+          Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Optional: Place to the bottom of scripts -->
+<script>
+  const myModal = new bootstrap.Modal(
+    document.getElementById("modalId"),
+    options,
+  );
+</script>
