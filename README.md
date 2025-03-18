@@ -1,6 +1,6 @@
 # GameSimulation
 
-[img demo](https://github.com/CuongAFK/Github-Upload-Images/blob/main/MoneySimulation.png).
+![image demo](https://github.com/CuongAFK/Github-Upload-Images/blob/main/MoneySimulation.png).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
 
